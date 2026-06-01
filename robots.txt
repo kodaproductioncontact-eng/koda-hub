@@ -20,4 +20,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://koda-prod.netlify.app/sitemap.xml
+Sitemap: https://kodaprod.space/sitemap.xml

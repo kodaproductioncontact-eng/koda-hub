@@ -10,8 +10,8 @@
 - **Téléphone** : 06 25 88 90 88
 - **Email** : kodaproduction.contact@gmail.com
 - **Site portfolio** : https://kodaprod.com
-- **Site offres mariage** : https://koda-mariage.netlify.app
-- **Site offres marques & commerces (Koda & Co)** : https://koda-signature.netlify.app
+- **Site offres mariage** : https://kodaprod.live
+- **Site offres marques & commerces (Koda & Co)** : https://kodaprod.online
 - **Note Google** : 5,0/5 sur 9 avis vérifiés
 - **Code APE** : 74.20Z (Activités photographiques)
 
@@ -43,4 +43,4 @@
 
 ## Offre Koda & Co (instituts beauté, marques et commerces)
 
-Production photo & vidéo mensuelle pour instituts de beauté, centres laser, médecines esthétiques, hôtels-spas, chaînes franchisées, marques cosmétique régionales et commerces premium. Formules d'abonnement de 690 €/mois à 2 490 €/mois. Voir https://koda-signature.netlify.app pour les détails.
+Production photo & vidéo mensuelle pour instituts de beauté, centres laser, médecines esthétiques, hôtels-spas, chaînes franchisées, marques cosmétique régionales et commerces premium. Formules d'abonnement de 690 €/mois à 2 490 €/mois. Voir https://kodaprod.online pour les détails.
