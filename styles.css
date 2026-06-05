@@ -6,8 +6,8 @@
   --r-lg: 18px;
   --r-xl: 28px;
 
-  --sans: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
