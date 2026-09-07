@@ -206,6 +206,16 @@
 </main>
 
 <script>
+  // iPhone / Safari / webviews : bascule sur les flux HLS natifs (segments courts,
+  // fiables même via les proxys des navigateurs intégrés type Gmail).
+  (function() {
+    const probe = document.createElement('video');
+    if (!probe.canPlayType('application/vnd.apple.mpegurl')) return;
+    document.querySelectorAll('.video-frame video').forEach(function(v) {
+      const name = v.getAttribute('src').split('?')[0].replace('.mp4', '');
+      v.src = 'hls/' + name + '.m3u8';
+    });
+  })();
   (function() {
     const root = document.documentElement;
     const btn = document.getElementById('theme-toggle');
