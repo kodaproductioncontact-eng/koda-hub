@@ -137,7 +137,7 @@
 
     <figure class="video-card anim anim-2" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline src="petit-thouars-interview.mp4?v=2" poster="petit-thouars-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="petit-thouars-interview" poster="petit-thouars-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Interview · Le Petit Thouars</span>
@@ -147,7 +147,7 @@
 
     <figure class="video-card anim anim-3" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline src="oleron.mp4?v=2" poster="oleron-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="oleron" poster="oleron-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île d'Oléron</span>
@@ -157,7 +157,7 @@
 
     <figure class="video-card anim anim-4" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline src="ile-de-re.mp4?v=2" poster="ile-de-re-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="ile-de-re" poster="ile-de-re-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île de Ré</span>
@@ -167,7 +167,7 @@
 
     <figure class="video-card anim anim-5" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline src="emeline-ile-de-re.mp4?v=2" poster="emeline-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="emeline-ile-de-re" poster="emeline-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Présentation · Île de Ré</span>
@@ -205,15 +205,21 @@
 
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js"></script>
 <script>
-  // iPhone / Safari / webviews : bascule sur les flux HLS natifs (segments courts,
-  // fiables même via les proxys des navigateurs intégrés type Gmail).
+  // Diffusion 100 % HLS : natif sur Safari/iOS/webviews, via hls.js ailleurs.
   (function() {
-    const probe = document.createElement('video');
-    if (!probe.canPlayType('application/vnd.apple.mpegurl')) return;
-    document.querySelectorAll('.video-frame video').forEach(function(v) {
-      const name = v.getAttribute('src').split('?')[0].replace('.mp4', '');
-      v.src = 'hls/' + name + '.m3u8';
+    const vids = document.querySelectorAll('.video-frame video');
+    const native = document.createElement('video').canPlayType('application/vnd.apple.mpegurl');
+    vids.forEach(function(v) {
+      const src = 'hls/' + v.dataset.video + '.m3u8';
+      if (native) {
+        v.src = src;
+      } else if (window.Hls && Hls.isSupported()) {
+        const h = new Hls({ maxBufferLength: 30 });
+        h.loadSource(src);
+        h.attachMedia(v);
+      }
     });
   })();
   (function() {
