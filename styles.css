@@ -46,6 +46,8 @@
   --accent-rose-soft:   rgba(181, 61, 101, 0.10);
   --accent-mint:        #2F7A52;
   --accent-mint-soft:   rgba(47, 122, 82, 0.10);
+  --accent-gold:        #8F6F22;
+  --accent-gold-soft:   rgba(200, 164, 78, 0.14);
 }
 
 [data-theme="dark"] {
@@ -82,6 +84,8 @@
   --accent-rose-soft:   rgba(255, 143, 176, 0.14);
   --accent-mint:        #7FD8AB;
   --accent-mint-soft:   rgba(127, 216, 171, 0.14);
+  --accent-gold:        #D4B466;
+  --accent-gold-soft:   rgba(212, 180, 102, 0.14);
 }
 
 * { box-sizing: border-box; }
@@ -255,6 +259,10 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent-mint-soft);
   color: var(--accent-mint);
 }
+.link-icon--gold {
+  background: var(--accent-gold-soft);
+  color: var(--accent-gold);
+}
 .link-icon--neutral {
   background: var(--hair);
   color: var(--ink-2);
@@ -338,6 +346,7 @@ a { color: inherit; text-decoration: none; }
   .anim-6 { animation-delay: 460ms; }
   .anim-7 { animation-delay: 540ms; }
   .anim-8 { animation-delay: 620ms; }
+  .anim-9 { animation-delay: 700ms; }
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidéo & Drone · Koda Production · Erwan Chapuis</title>
+<meta name="description" content="Vidéo immobilière par Koda Production : interviews de lieux, reels 4K et prises de vue drone. Erwan Chapuis, photographe & vidéaste à Niort.">
+
+<meta property="og:title" content="Vidéo & Drone · Koda Production">
+<meta property="og:description" content="Interviews de lieux, reels 4K et prises de vue drone pour l'immobilier de caractère.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://kodaprod.space/video/">
+<meta property="og:image" content="https://kodaprod.space/logo.svg">
+<link rel="canonical" href="https://kodaprod.space/video/">
+
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .vhub {
+    max-width: 980px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+  }
+  .v-back {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-family: var(--mono);
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--glass);
+    border: 1px solid var(--hair);
+    transition: color .15s, transform .15s;
+  }
+  .v-back:hover { color: var(--ink); transform: translateX(-2px); }
+  .v-back svg { width: 14px; height: 14px; stroke-width: 1.8; }
+
+  .video-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .video-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .video-frame {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--surface-2);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+  }
+  .video-frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 4px;
+  }
+  .video-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .video-meta {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .v-cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .v-cta .link-card { min-width: 260px; }
+  @media (max-width: 760px) {
+    .video-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob-3"></div>
+
+<button class="theme-fab" id="theme-toggle" aria-label="Basculer thème clair / sombre">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+  </svg>
+</button>
+
+<main class="vhub">
+
+  <a class="v-back anim anim-1" href="../">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    kodaprod.space
+  </a>
+
+  <section class="hero anim anim-1">
+    <div class="hero-logo">
+      <img src="../logo.svg" alt="Koda Production">
+    </div>
+    <h1 class="hero-name">Vidéo &amp; Drone</h1>
+    <p class="hero-tagline">Interviews de lieux, reels 4K et prises de vue aériennes pour l'immobilier de caractère</p>
+  </section>
+
+  <section class="video-grid">
+
+    <figure class="video-card anim anim-2" style="margin:0">
+      <div class="video-frame">
+        <video controls preload="none" playsinline poster="petit-thouars-poster.jpg">
+          <source src="petit-thouars-interview.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="video-caption">
+        <span class="video-title">Interview · Le Petit Thouars</span>
+        <span class="video-meta">portrait de lieu · 2 min 46</span>
+      </figcaption>
+    </figure>
+
+    <figure class="video-card anim anim-3" style="margin:0">
+      <div class="video-frame">
+        <video controls preload="none" playsinline poster="oleron-poster.jpg">
+          <source src="oleron.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="video-caption">
+        <span class="video-title">Île d'Oléron</span>
+        <span class="video-meta">reel immobilier · 4K · 20 s</span>
+      </figcaption>
+    </figure>
+
+    <figure class="video-card anim anim-4" style="margin:0">
+      <div class="video-frame">
+        <video controls preload="none" playsinline poster="ile-de-re-poster.jpg">
+          <source src="ile-de-re.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="video-caption">
+        <span class="video-title">Île de Ré</span>
+        <span class="video-meta">reel immobilier · 4K · 29 s</span>
+      </figcaption>
+    </figure>
+
+  </section>
+
+  <nav class="v-cta anim anim-5">
+    <a class="link-card" href="https://kodaprod.com">
+      <span class="link-body">
+        <span class="link-title">Portfolio photo</span>
+        <span class="link-meta">kodaprod.com</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+    <a class="link-card" href="mailto:kodaproduction.contact@gmail.com">
+      <span class="link-body">
+        <span class="link-title">Parler d'un projet</span>
+        <span class="link-meta">kodaproduction.contact@gmail.com</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </nav>
+
+  <p class="foot anim anim-6">
+    Koda Production · Erwan Chapuis<br>
+    Photographe &amp; Vidéaste · 06 25 88 90 88 · Niort
+  </p>
+
+</main>
+
+<script>
+  (function() {
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const stored = localStorage.getItem('koda-theme');
+    if (stored === 'dark' || stored === 'light') {
+      root.setAttribute('data-theme', stored);
+    }
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('koda-theme', next);
+    });
+  })();
+</script>
+
+</body>
+</html>
