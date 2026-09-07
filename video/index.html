@@ -50,8 +50,11 @@
   .video-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 1000px) and (min-width: 761px) {
+    .video-grid { grid-template-columns: repeat(2, 1fr); max-width: 560px; margin: 0 auto; }
   }
   .video-card {
     display: flex;
@@ -159,6 +162,16 @@
       <figcaption class="video-caption">
         <span class="video-title">Île de Ré</span>
         <span class="video-meta">reel immobilier · 4K · 29 s</span>
+      </figcaption>
+    </figure>
+
+    <figure class="video-card anim anim-5" style="margin:0">
+      <div class="video-frame">
+        <video controls preload="metadata" playsinline src="emeline-ile-de-re.mp4" poster="emeline-poster.jpg"></video>
+      </div>
+      <figcaption class="video-caption">
+        <span class="video-title">Présentation · Île de Ré</span>
+        <span class="video-meta">avec Emeline · 3 min 13</span>
       </figcaption>
     </figure>
 
