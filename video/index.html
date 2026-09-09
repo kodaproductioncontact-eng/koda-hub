@@ -14,13 +14,13 @@
 <meta property="og:image" content="https://kodaprod.space/logo.svg">
 <link rel="canonical" href="https://kodaprod.space/video/">
 
-<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="/styles.css">
 <style>
   .vhub {
     max-width: 980px;
@@ -120,14 +120,14 @@
 
 <main class="vhub">
 
-  <a class="v-back anim anim-1" href="../">
+  <a class="v-back anim anim-1" href="/">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
     kodaprod.space
   </a>
 
   <section class="hero anim anim-1">
     <div class="hero-logo">
-      <img src="../logo.svg" alt="Koda Production">
+      <img src="/logo.svg" alt="Koda Production">
     </div>
     <h1 class="hero-name">Vidéo &amp; Drone</h1>
     <p class="hero-tagline">Interviews de lieux, reels 4K et prises de vue aériennes pour l'immobilier de caractère</p>
@@ -137,7 +137,7 @@
 
     <figure class="video-card anim anim-2" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="petit-thouars-interview" poster="petit-thouars-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="petit-thouars-interview" poster="/video/petit-thouars-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Interview · Le Petit Thouars</span>
@@ -147,7 +147,7 @@
 
     <figure class="video-card anim anim-3" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="oleron" poster="oleron-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="oleron" poster="/video/oleron-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île d'Oléron</span>
@@ -157,7 +157,7 @@
 
     <figure class="video-card anim anim-4" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="ile-de-re" poster="ile-de-re-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="ile-de-re" poster="/video/ile-de-re-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île de Ré</span>
@@ -167,7 +167,7 @@
 
     <figure class="video-card anim anim-5" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="emeline-ile-de-re" poster="emeline-poster.jpg"></video>
+        <video controls preload="metadata" playsinline data-video="emeline-ile-de-re" poster="/video/emeline-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Présentation · Île de Ré</span>
@@ -212,7 +212,7 @@
     const vids = document.querySelectorAll('.video-frame video');
     const native = document.createElement('video').canPlayType('application/vnd.apple.mpegurl');
     vids.forEach(function(v) {
-      const src = 'hls/' + v.dataset.video + '.m3u8';
+      const src = '/video/hls/' + v.dataset.video + '.m3u8';
       if (native) {
         v.src = src;
       } else if (window.Hls && Hls.isSupported()) {

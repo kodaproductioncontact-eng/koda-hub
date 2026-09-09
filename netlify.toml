@@ -1,6 +1,12 @@
 [build]
   publish = "."
 
+[[redirects]]
+  from = "/video"
+  to = "/video/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
