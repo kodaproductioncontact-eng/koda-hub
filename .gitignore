@@ -1,2 +1,4 @@
 .vercel
 video/*.mp4
+.netlify/
+.vercel/

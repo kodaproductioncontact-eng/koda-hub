@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs immobilier · Koda Production · Erwan Chapuis</title>
+<meta name="description" content="Tarifs photo, vidéo et drone pour l'immobilier. Koda Production, Erwan Chapuis, photographe et vidéaste à Niort. Prix nets, déplacement inclus, livraison 48 h.">
+
+<meta property="og:title" content="Tarifs immobilier · Koda Production">
+<meta property="og:description" content="Photo, vidéo et drone pour vos annonces. Prix nets, livraison 48 h, déplacement inclus autour de Niort.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://kodaprod.space/tarifs/">
+<meta property="og:image" content="https://kodaprod.space/logo.svg">
+<link rel="canonical" href="https://kodaprod.space/tarifs/">
+
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .thub { max-width: 1000px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  .v-back {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: var(--muted); font-family: var(--mono);
+    padding: 8px 14px; border-radius: 10px; background: var(--glass);
+    border: 1px solid var(--hair); transition: color .15s, transform .15s;
+  }
+  .v-back:hover { color: var(--ink); transform: translateX(-2px); }
+  .v-back svg { width: 14px; height: 14px; stroke-width: 1.8; }
+
+  .t-section { width: 100%; }
+  .t-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--faint); margin: 0 0 14px; padding-left: 4px;
+  }
+
+  .t-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .t-card {
+    position: relative; display: flex; flex-direction: column; gap: 14px;
+    padding: 26px 24px 24px; border-radius: var(--r-lg);
+    background: var(--surface); border: 1px solid var(--hair);
+    box-shadow: var(--shadow-md);
+  }
+  .t-card.is-featured { border-color: var(--accent-blue); box-shadow: var(--shadow-lg); }
+  .t-badge {
+    position: absolute; top: -10px; left: 24px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    background: var(--accent-blue); color: #fff; padding: 4px 10px; border-radius: 999px;
+  }
+  .t-name { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+  .t-for { font-size: 13px; color: var(--muted); line-height: 1.5; min-height: 38px; }
+  .t-price { font-size: 36px; font-weight: 600; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
+  .t-price span { font-size: 15px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+  .t-unit { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin-top: 7px; line-height: 1.4; }
+  .t-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+  .t-list li {
+    font-size: 14px; color: var(--ink); padding: 9px 0;
+    border-top: 1px solid var(--hair); line-height: 1.45;
+  }
+  .t-list li:first-child { border-top: 0; }
+  .t-list b { font-weight: 600; }
+
+  .t-rows { width: 100%; border-top: 1px solid var(--hair); }
+  .t-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: baseline;
+    padding: 16px 4px; border-bottom: 1px solid var(--hair);
+  }
+  .t-row-name { font-size: 16px; font-weight: 500; color: var(--ink); }
+  .t-row-desc { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .t-row-price { font-size: 20px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+  .t-packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .t-pack {
+    padding: 22px; border-radius: var(--r-lg);
+    background: var(--surface-2, var(--glass)); border: 1px solid var(--hair);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .t-pack-name { font-size: 17px; font-weight: 600; color: var(--ink); }
+  .t-pack-desc { font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
+  .t-pack-price { font-size: 30px; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
+  .t-pack-price s { font-size: 14px; font-weight: 400; color: var(--faint); margin-left: 8px; }
+  .t-pack ul { list-style: none; padding: 0; margin: 4px 0 0; }
+  .t-pack li { font-size: 13.5px; color: var(--ink); padding: 5px 0; border-top: 1px solid var(--hair); }
+  .t-pack li:first-child { border-top: 0; }
+
+  .t-notes {
+    width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 32px;
+    padding-top: 20px; border-top: 1px solid var(--hair);
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+  }
+  .t-notes b { color: var(--ink); font-weight: 600; }
+
+  .v-cta { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .v-cta .link-card { min-width: 260px; }
+
+  @media (max-width: 860px) {
+    .t-cards, .t-packs { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .t-notes { grid-template-columns: 1fr; }
+    .t-for { min-height: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob-3"></div>
+
+<button class="theme-fab" id="theme-toggle" aria-label="Basculer thème clair / sombre">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+  </svg>
+</button>
+
+<main class="thub">
+
+  <a class="v-back anim anim-1" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    kodaprod.space
+  </a>
+
+  <section class="hero anim anim-1">
+    <div class="hero-logo">
+      <img src="/logo.svg" alt="Koda Production">
+    </div>
+    <h1 class="hero-name">Tarifs immobilier</h1>
+    <p class="hero-tagline">Photo, vidéo et drone pour vos annonces. Prix nets, déplacement inclus autour de Niort, livraison en 48 h.</p>
+  </section>
+
+  <section class="t-section anim anim-2">
+    <p class="t-label">Photo</p>
+    <div class="t-cards">
+
+      <article class="t-card">
+        <div>
+          <div class="t-name">Essentiel</div>
+          <div class="t-for">Appartements, maisons de ville, biens à mettre en ligne vite.</div>
+        </div>
+        <div>
+          <div class="t-price">190 <span>€</span></div>
+          <div class="t-unit">par bien</div>
+        </div>
+        <ul class="t-list">
+          <li><b>12 à 15 photos</b> HDR retouchées</li>
+          <li>Lumière et volumes travaillés, sans déformation</li>
+          <li>Livraison 48 h</li>
+          <li>Photo supplémentaire 10 €</li>
+        </ul>
+      </article>
+
+      <article class="t-card is-featured">
+        <span class="t-badge">Le plus demandé</span>
+        <div>
+          <div class="t-name">Caractère</div>
+          <div class="t-for">Maisons de caractère, biens avec extérieur, annonces qui doivent sortir du lot.</div>
+        </div>
+        <div>
+          <div class="t-price">290 <span>€</span></div>
+          <div class="t-unit">par bien</div>
+        </div>
+        <ul class="t-list">
+          <li><b>20 à 25 photos</b> HDR retouchées</li>
+          <li><b>Drone</b> (3 vues) ou <b>heure dorée</b> au choix</li>
+          <li>Livraison 48 h</li>
+          <li>Photo supplémentaire 10 €</li>
+        </ul>
+      </article>
+
+      <article class="t-card">
+        <div>
+          <div class="t-name">Signature</div>
+          <div class="t-for">Prestige, demeures, biens d'exception. Une demi-journée sur place.</div>
+        </div>
+        <div>
+          <div class="t-price">450 <span>€</span></div>
+          <div class="t-unit">par bien · journée 780 €</div>
+        </div>
+        <ul class="t-list">
+          <li><b>30 à 40 photos</b>, direction artistique dédiée</li>
+          <li>Drone <b>et</b> heure dorée inclus</li>
+          <li>Livraison 72 h</li>
+          <li>Sélection accompagnée avec l'agent</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="t-section anim anim-3">
+    <p class="t-label">Vidéo</p>
+    <div class="t-rows">
+      <div class="t-row">
+        <div>
+          <div class="t-row-name">Reel</div>
+          <div class="t-row-desc">30 à 45 s, format vertical, monté, musique et sous-titres. Avec l'agent à l'image : + 60 €.</div>
+        </div>
+        <div class="t-row-price">190 €</div>
+      </div>
+      <div class="t-row">
+        <div>
+          <div class="t-row-name">Visite</div>
+          <div class="t-row-desc">60 à 90 s, livrée en horizontal et en vertical, étalonnée.</div>
+        </div>
+        <div class="t-row-price">350 €</div>
+      </div>
+      <div class="t-row">
+        <div>
+          <div class="t-row-name">Film</div>
+          <div class="t-row-desc">2 à 3 min, drone inclus, étalonnage cinéma. Voix off professionnelle : + 120 €.</div>
+        </div>
+        <div class="t-row-price">950 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-section anim anim-4">
+    <p class="t-label">Drone</p>
+    <div class="t-rows">
+      <div class="t-row">
+        <div>
+          <div class="t-row-name">Vues aériennes</div>
+          <div class="t-row-desc">8 à 10 photos, en complément d'un shooting. Vidéo aérienne 30 à 60 s : + 150 €.</div>
+        </div>
+        <div class="t-row-price">120 €</div>
+      </div>
+      <div class="t-row">
+        <div>
+          <div class="t-row-name">Drone seul</div>
+          <div class="t-row-desc">Déplacement dédié, photos et vidéo. Zone urbaine avec déclaration préfecture : + 80 €.</div>
+        </div>
+        <div class="t-row-price">250 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-section anim anim-4">
+    <p class="t-label">Packs</p>
+    <div class="t-packs">
+      <article class="t-pack">
+        <div class="t-pack-name">Annonce complète</div>
+        <div class="t-pack-desc">Caractère + reel + vues aériennes</div>
+        <div class="t-pack-price">520 € <s>600 €</s></div>
+        <ul>
+          <li>25 photos et heure dorée</li>
+          <li>Reel 30 à 45 s + 8 à 10 vues aériennes</li>
+        </ul>
+      </article>
+      <article class="t-pack">
+        <div class="t-pack-name">Prestige</div>
+        <div class="t-pack-desc">Signature + visite vidéo + vidéo aérienne</div>
+        <div class="t-pack-price">820 € <s>950 €</s></div>
+        <ul>
+          <li>Demi-journée, 30 à 40 photos, heure dorée</li>
+          <li>Visite 60 à 90 s et vidéo aérienne</li>
+        </ul>
+      </article>
+      <article class="t-pack">
+        <div class="t-pack-name">Domaine</div>
+        <div class="t-pack-desc">Journée + film 2 à 3 min</div>
+        <div class="t-pack-price">1 490 € <s>1 730 €</s></div>
+        <ul>
+          <li>Journée sur place, 50 à 70 photos, heure dorée</li>
+          <li>Film 2 à 3 min, drone et étalonnage</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="t-notes anim anim-5">
+    <div><b>Agences.</b> 5 biens Caractère prépayés : 1 300 € (260 € l'unité). 10 biens : 2 400 €. Abonnement 3 reels par mois : 450 €.</div>
+    <div><b>Délais.</b> Photo 48 h, Signature 72 h, vidéo 5 jours ouvrés. Express 24 h : + 30 %.</div>
+    <div><b>Déplacement.</b> 25 km inclus autour de Niort, puis 0,60 € du km. Île de Ré, Oléron, Royan : forfait 40 €.</div>
+    <div><b>Droits.</b> Usage annonce, site et réseaux sociaux de l'agence inclus. Presse, affichage et campagnes sur devis.</div>
+    <div><b>Prix nets.</b> TVA non applicable, article 293 B du CGI.</div>
+    <div><b>Premier reportage.</b> Shoot d'essai offert sur l'un de vos mandats en cours, sans engagement.</div>
+  </div>
+
+  <nav class="v-cta anim anim-5">
+    <a class="link-card" href="/video/">
+      <span class="link-body">
+        <span class="link-title">Voir mes vidéos</span>
+        <span class="link-meta">kodaprod.space/video</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+    <a class="link-card" href="mailto:kodaproduction.contact@gmail.com">
+      <span class="link-body">
+        <span class="link-title">Demander un devis</span>
+        <span class="link-meta">06 25 88 90 88</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </nav>
+
+</main>
+
+<script>
+  (function() {
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const stored = localStorage.getItem('koda-theme');
+    if (stored === 'dark' || stored === 'light') {
+      root.setAttribute('data-theme', stored);
+    }
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('koda-theme', next);
+    });
+  })();
+</script>
+
+</body>
+</html>
