@@ -137,7 +137,7 @@
 
     <figure class="video-card anim anim-2" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="petit-thouars-interview" poster="/video/petit-thouars-poster.jpg"></video>
+        <video controls preload="none" playsinline data-video="petit-thouars-interview" poster="/video/petit-thouars-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Interview · Le Petit Thouars</span>
@@ -147,7 +147,7 @@
 
     <figure class="video-card anim anim-3" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="oleron" poster="/video/oleron-poster.jpg"></video>
+        <video controls preload="none" playsinline data-video="oleron" poster="/video/oleron-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île d'Oléron</span>
@@ -157,7 +157,7 @@
 
     <figure class="video-card anim anim-4" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="ile-de-re" poster="/video/ile-de-re-poster.jpg"></video>
+        <video controls preload="none" playsinline data-video="ile-de-re" poster="/video/ile-de-re-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Île de Ré</span>
@@ -167,7 +167,7 @@
 
     <figure class="video-card anim anim-5" style="margin:0">
       <div class="video-frame">
-        <video controls preload="metadata" playsinline data-video="emeline-ile-de-re" poster="/video/emeline-poster.jpg"></video>
+        <video controls preload="none" playsinline data-video="emeline-ile-de-re" poster="/video/emeline-poster.jpg"></video>
       </div>
       <figcaption class="video-caption">
         <span class="video-title">Présentation · Île de Ré</span>
@@ -216,9 +216,11 @@
       if (native) {
         v.src = src;
       } else if (window.Hls && Hls.isSupported()) {
-        const h = new Hls({ maxBufferLength: 30 });
+        // Chargement au clic : rien ne se télécharge tant qu'on n'a pas lancé la vidéo.
+        const h = new Hls({ maxBufferLength: 30, autoStartLoad: false });
         h.loadSource(src);
         h.attachMedia(v);
+        v.addEventListener('play', function() { h.startLoad(); }, { once: true });
       }
     });
   })();
