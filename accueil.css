@@ -1,0 +1,97 @@
+/* kodaprod.space · accueil « mini-pièce » (27-09-2026), dans la famille de kodaprod.com.
+   Les sous-pages (/video, /tarifs) gardent styles.css. */
+:root {
+  --fond: #0A0A0B;
+  --carte: #F4F4F6;
+  --filet: rgba(10, 10, 11, .10);
+  --encre: #0A0A0B;
+  --gris: #6B6B72;
+  --texte-sombre: #e8e4d8;
+  --texte-doux: #8b8f9c;
+  --bleu: #3b82f6;
+  --rose: #e27da0;
+  --menthe: #3fbf95;
+  --sans: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: clip; background: var(--fond); color: var(--texte-sombre); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.pixel { image-rendering: pixelated; }
+.surtitre { font-family: var(--mono); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--texte-doux); }
+
+/* le ciel étoilé de la galerie, en plus discret */
+.etoiles { position: fixed; inset: 0; pointer-events: none; opacity: .5;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff5 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 12%, #fff4 50%, transparent 51%),
+    radial-gradient(1px 1px at 40% 36%, #fff3 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 44%, #fff4 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 62%, #fff3 50%, transparent 51%),
+    radial-gradient(1px 1px at 64% 78%, #fff4 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 88%, #fff3 50%, transparent 51%),
+    radial-gradient(1px 1px at 92% 92%, #fff3 50%, transparent 51%); }
+
+/* ── Les liens pratiques : des pastilles, sous l'essentiel ── */
+.pratique { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.pastille { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px;
+  border-radius: 10px; background: #16161c; color: #c9cbd4; font-family: var(--mono); font-size: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); transition: background .2s, color .2s, transform .15s; }
+.pastille:hover { background: var(--carte); color: var(--encre); }
+.pastille:active { transform: scale(.97); }
+.pastille .ic { opacity: .8; }
+
+.pied { font-family: var(--mono); font-size: 10px; line-height: 1.7; color: #5a5e68; text-align: center; }
+
+/* ── La bulle de Koda, celle de la pièce ── */
+.bulle { position: relative; background: #fff; color: var(--encre); font-family: var(--mono); font-size: 13px;
+  line-height: 1.45; padding: 10px 14px; border-radius: 8px; border: 2px solid var(--encre);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45); max-width: 230px; }
+.bulle::after { content: ''; position: absolute; left: -9px; bottom: 14px; width: 12px; height: 12px;
+  background: #fff; border-left: 2px solid var(--encre); border-bottom: 2px solid var(--encre); transform: rotate(45deg); }
+.curseur { display: inline-block; width: 7px; height: 13px; background: var(--encre); vertical-align: -2px; margin-left: 2px; animation: clign 1s steps(1) infinite; }
+@keyframes clign { 50% { opacity: 0; } }
+
+/* ── La PORTE : le composant des domaines ──────────────────────────
+   Dessinée en pixels durs (aucun arrondi), comme le mobilier Habbo.
+   Au toucher le battant pivote, la lumière du site sort de l'ouverture,
+   puis la redirection part. */
+.porte { --c: var(--bleu); --c2: #1d4fb8; --lum: #cfe0ff;
+  position: relative; display: block; width: 100%; aspect-ratio: 96 / 150; perspective: 700px; cursor: pointer; }
+.porte .plaque { position: absolute; left: 50%; top: -2px; transform: translate(-50%, -100%);
+  background: #16161c; color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 500;
+  padding: 3px 7px; border: 2px solid #000; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); white-space: nowrap; }
+.porte .chambranle { position: absolute; inset: 0; background: #26262d; border: 3px solid #000;
+  box-shadow: inset 0 0 0 3px #3a3a44, inset 0 0 0 6px #1a1a20; }
+.porte .ouverture { position: absolute; inset: 9px 9px 0; background: radial-gradient(120% 90% at 50% 100%, var(--lum), var(--c) 55%, #000 100%);
+  box-shadow: inset 0 0 0 2px #000; overflow: hidden; }
+.porte .battant { position: absolute; inset: 9px 9px 0; transform-origin: 0 50%; transition: transform .7s cubic-bezier(.3,.9,.3,1);
+  background: var(--c); border: 2px solid #000;
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,.28), inset -3px -3px 0 var(--c2); }
+/* deux panneaux moulurés, en pixels */
+.porte .battant::before, .porte .battant::after { content: ''; position: absolute; left: 16%; right: 16%;
+  border: 2px solid var(--c2); box-shadow: inset 2px 2px 0 rgba(255,255,255,.22); }
+.porte .battant::before { top: 9%; height: 34%; }
+.porte .battant::after { top: 52%; height: 38%; }
+.porte .poignee { position: absolute; right: 12%; top: 52%; width: 6px; height: 6px; background: #f2d27a; border: 1px solid #000; z-index: 1; }
+.porte.ouverte .battant { transform: rotateY(-78deg); }
+.porte .halo { position: absolute; left: -20%; right: -20%; bottom: -26px; height: 30px; opacity: 0; transition: opacity .6s .15s;
+  background: radial-gradient(50% 100% at 50% 0, var(--lum), transparent 70%); filter: blur(2px); }
+.porte.ouverte .halo { opacity: .8; }
+.porte--rose { --c: var(--rose); --c2: #a8466b; --lum: #ffe3ee; }
+.porte--menthe { --c: var(--menthe); --c2: #1f7d5f; --lum: #dcfff2; }
+
+/* la barre de redirection : l'adresse s'écrit, la ligne se remplit */
+.redirection { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 140%); transition: transform .45s cubic-bezier(.3,.9,.3,1);
+  width: min(360px, 92vw); background: var(--carte); color: var(--encre); border-radius: 12px; padding: 12px 14px 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.55); z-index: 50; }
+.redirection.visible { transform: translate(-50%, 0); }
+.redirection .adresse { font-family: var(--mono); font-size: 14px; }
+.redirection .adresse b { font-weight: 500; }
+.redirection .ligne { margin-top: 10px; height: 3px; background: #e2e2e6; overflow: hidden; }
+.redirection .ligne i { display: block; height: 100%; width: 0; background: var(--bleu); transition: width .9s linear; }
+.redirection.visible .ligne i { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

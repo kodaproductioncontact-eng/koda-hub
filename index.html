@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/accueil.css">
+<meta name="theme-color" content="#0A0A0B">
 
 <script type="application/ld+json">
 {
@@ -99,159 +100,162 @@
   ]
 }
 </script>
+<style>
+  .page { position: relative; min-height: 100dvh; display: flex; flex-direction: column; gap: 22px;
+          padding: 28px 16px 28px; max-width: 460px; margin: 0 auto; }
+  .tete { display: flex; align-items: center; justify-content: space-between; }
+  .tete img { height: 44px; width: auto; }
+  .tete .surtitre { text-align: right; line-height: 1.6; }
+
+  /* la scène : un coin de pièce façon Habbo, trois portes */
+  .scene { position: relative; width: 100%; aspect-ratio: 360 / 340; }
+  .scene svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .scene .porte-svg { cursor: pointer; }
+  .scene .porte-svg:hover .panneau { filter: brightness(1.12); }
+  .koda { position: absolute; width: 14%; transform: translate(-50%, -100%); z-index: 2; pointer-events: none; }
+  .koda img { display: block; width: 100%; height: auto; }
+  .scene .bulle { position: absolute; left: 58%; top: 66%; font-size: 12px; max-width: 170px; padding: 8px 11px; z-index: 3; }
+
+  .legende { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+  .legende a { padding: 10px 4px; border-radius: 10px; background: #16161c; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .legende b { display: block; font-size: 13px; font-weight: 600; }
+  .legende span { font-family: var(--mono); font-size: 10.5px; color: var(--texte-doux); }
+  .legende i { display: inline-block; width: 7px; height: 7px; margin-right: 5px; vertical-align: 1px; }
+</style>
 </head>
 <body>
+<div class="etoiles"></div>
+<main class="page">
+  <h1 class="visuellement-cache">Koda Production · Erwan Chapuis, photographe et vidéaste à Niort</h1>
+  <header class="tete">
+    <img src="/img/koda/koda-logo.png" width="480" height="326" alt="Koda Production">
+    <p class="surtitre">Photographe &amp; vidéaste<br>Niort</p>
+  </header>
 
-<div class="blob-3"></div>
+  <div class="scene" id="scene">
+    <svg viewBox="0 0 360 340" id="svg" aria-label="Un coin de pièce avec trois portes"></svg>
+    <div class="koda" id="koda"><img class="pixel" id="kodaImg" src="/img/koda/hb_or_debout_4_0.png" alt="Koda"></div>
+    <div class="bulle" id="bulle"></div>
+  </div>
 
-<button class="theme-fab" id="theme-toggle" aria-label="Basculer thème clair / sombre">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="4"/>
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-  </svg>
-</button>
-
-<main class="hub">
-
-  <section class="hero anim anim-1">
-    <div class="hero-logo">
-      <img src="logo.svg" alt="Koda Production">
-    </div>
-    <h1 class="hero-name">Koda Production</h1>
-    <p class="hero-tagline">Photographe &amp; Vidéaste · Niort &amp; Nouvelle-Aquitaine</p>
-  </section>
-
-  <nav class="links">
-
-    <a class="link-card anim anim-2" href="https://kodaprod.com">
-      <span class="link-icon link-icon--blue" aria-hidden="true">
-        <svg viewBox="0 0 256 256" fill="currentColor"><path d="M224 128a96 96 0 1 1-96-96a96 96 0 0 1 96 96" opacity=".2"/><path d="M128 24a104 104 0 1 0 104 104A104.12 104.12 0 0 0 128 24m88 104a87.6 87.6 0 0 1-3.33 24h-38.51a157.4 157.4 0 0 0 0-48h38.51a87.6 87.6 0 0 1 3.33 24m-114 40h52a115.1 115.1 0 0 1-26 45a115.3 115.3 0 0 1-26-45m-3.9-16a140.8 140.8 0 0 1 0-48h59.88a140.8 140.8 0 0 1 0 48ZM40 128a87.6 87.6 0 0 1 3.33-24h38.51a157.4 157.4 0 0 0 0 48H43.33A87.6 87.6 0 0 1 40 128m114-40h-52a115.1 115.1 0 0 1 26-45a115.3 115.3 0 0 1 26 45m52.33 0h-35.62a135.3 135.3 0 0 0-22.3-45.6A88.29 88.29 0 0 1 206.37 88Zm-98.74-45.6A135.3 135.3 0 0 0 85.29 88H49.63a88.29 88.29 0 0 1 57.96-45.6M49.63 168h35.66a135.3 135.3 0 0 0 22.3 45.6A88.29 88.29 0 0 1 49.63 168m98.78 45.6a135.3 135.3 0 0 0 22.3-45.6h35.66a88.29 88.29 0 0 1-57.96 45.6"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Portfolio</span>
-        <span class="link-meta">kodaprod.com</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-3" href="/video/">
-      <span class="link-icon link-icon--gold" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" opacity=".2"/><path d="M15.414 10.941c.781.462.781 1.656 0 2.118l-4.72 2.787C9.934 16.294 9 15.71 9 14.786V9.214c0-.924.934-1.507 1.694-1.059z"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Vidéo &amp; Drone</span>
-        <span class="link-meta">Interviews · reels 4K · immobilier</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-4" href="/tarifs/">
-      <span class="link-icon link-icon--mint" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" opacity=".2"/><path d="M12 6.25a.75.75 0 0 1 .75.75v.31c1.32.22 2.25 1.19 2.25 2.38a.75.75 0 0 1-1.5 0c0-.44-.48-.94-1.5-.94s-1.5.5-1.5.94c0 .43.4.72 1.63.99c1.13.25 2.87.64 2.87 2.44c0 1.19-.93 2.16-2.25 2.38V16a.75.75 0 0 1-1.5 0v-.31c-1.32-.22-2.25-1.19-2.25-2.38a.75.75 0 0 1 1.5 0c0 .44.48.94 1.5.94s1.5-.5 1.5-.94c0-.43-.4-.72-1.63-.99c-1.13-.25-2.87-.64-2.87-2.44c0-1.19.93-2.16 2.25-2.38V7a.75.75 0 0 1 .75-.75"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Tarifs immobilier</span>
-        <span class="link-meta">Photo · vidéo · drone · packs agences</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-5" href="https://kodaprod.live">
-      <span class="link-icon link-icon--rose" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2 9.137c0 4.405 3.298 6.946 6.106 9.11q.44.337.856.664C10 19.729 11 20.5 12 20.5v-15C7.5.826 2 4.275 2 9.138" clip-rule="evenodd" opacity=".5"/><path d="m14 7.5l-2-2v15c1 0 2-.77 3.038-1.59q.417-.326.856-.663C18.702 16.083 22 13.542 22 9.137c0-4.462-4.631-7.734-8.871-4.63l1.931 1.931A.75.75 0 0 1 14 7.5"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Offres mariage</span>
-        <span class="link-meta">kodaprod.live</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-6" href="https://kodaprod.online">
-      <span class="link-icon link-icon--mint" aria-hidden="true">
-        <svg viewBox="0 0 256 256" fill="currentColor"><path d="M224 96v16a32 32 0 0 1-64 0V96H96v16a32 32 0 0 1-64 0V96l14.34-50.2A8 8 0 0 1 54 40h148a8 8 0 0 1 7.69 5.8Z" opacity=".2"/><path d="M231.69 93.81L217.35 43.6A16.07 16.07 0 0 0 202 32H54a16.07 16.07 0 0 0-15.35 11.6L24.31 93.81A8 8 0 0 0 24 96v16a40 40 0 0 0 16 32v72a8 8 0 0 0 8 8h160a8 8 0 0 0 8-8v-72a40 40 0 0 0 16-32V96a8 8 0 0 0-.31-2.19M54 48h148l11.42 40H42.61Zm98 56v8a24 24 0 0 1-48 0v-8ZM51.06 132.2A24 24 0 0 1 40 112v-8h48v8a24 24 0 0 1-35.12 21.26a8 8 0 0 0-1.82-1.06M200 208H56v-56.8a40.6 40.6 0 0 0 8 .8a40 40 0 0 0 32-16a40 40 0 0 0 64 0a40 40 0 0 0 32 16a40.6 40.6 0 0 0 8-.8Zm16-96a24 24 0 0 1-11.07 20.2a8 8 0 0 0-1.8 1.05A24 24 0 0 1 168 112v-8h48Z"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Prestations B2B</span>
-        <span class="link-meta">Production photo &amp; vidéo mensuelle</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-7" href="tel:+33625889088">
-      <span class="link-icon link-icon--neutral" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m15.556 14.548l-.455.48s-1.083 1.139-4.038-1.972s-1.872-4.25-1.872-4.25l.287-.303c.706-.744.773-1.938.156-2.81L8.374 3.91C7.61 2.83 6.135 2.688 5.26 3.609L3.691 5.26c-.433.457-.723 1.048-.688 1.705c.09 1.68.808 5.293 4.812 9.51c4.247 4.47 8.232 4.648 9.861 4.487c.516-.05.964-.329 1.325-.709l1.42-1.496c.96-1.01.69-2.74-.538-3.446l-1.91-1.1c-.806-.463-1.787-.327-2.417.336" opacity=".5"/><path d="M13.26 1.88a.75.75 0 0 1 .861-.62c.025.005.107.02.15.03q.129.027.352.09c.297.087.712.23 1.21.458c.996.457 2.321 1.256 3.697 2.631c1.376 1.376 2.175 2.702 2.632 3.698c.228.498.37.912.457 1.21a6 6 0 0 1 .113.454l.005.031a.765.765 0 0 1-.617.878a.75.75 0 0 1-.86-.617a3 3 0 0 0-.081-.327a7.4 7.4 0 0 0-.38-1.004c-.39-.85-1.092-2.024-2.33-3.262s-2.411-1.939-3.262-2.329a7.4 7.4 0 0 0-1.003-.38a6 6 0 0 0-.318-.08a.76.76 0 0 1-.626-.861"/><path fill-rule="evenodd" d="M13.486 5.33a.75.75 0 0 1 .927-.516l-.206.721l.206-.72h.003l.003.001l.008.002l.02.006l.056.02q.067.023.177.07c.146.062.345.158.59.303c.489.29 1.157.77 1.942 1.556c.785.785 1.266 1.453 1.556 1.942c.145.245.241.444.303.59a3 3 0 0 1 .09.233l.005.02l.003.008v.003l.001.001s0 .002-.72.208l.72-.206a.75.75 0 0 1-1.439.422l-.003-.01l-.035-.088a4 4 0 0 0-.216-.417c-.223-.376-.626-.946-1.326-1.646s-1.269-1.102-1.646-1.325a4 4 0 0 0-.504-.25l-.01-.004a.75.75 0 0 1-.505-.925" clip-rule="evenodd"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Téléphone</span>
-        <span class="link-meta">06 25 88 90 88</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-8" href="mailto:kodaproduction.contact@gmail.com">
-      <span class="link-icon link-icon--neutral" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.2 3H9.8C5.652 3 3.577 3 2.289 4.318S1 7.758 1 12s0 6.364 1.289 7.682S5.652 21 9.8 21h4.4c4.148 0 6.223 0 7.511-1.318S23 16.242 23 12s0-6.364-1.289-7.682S18.348 3 14.2 3" opacity=".5"/><path d="M19.128 8.033a.825.825 0 0 0-1.056-1.268l-2.375 1.98c-1.026.855-1.738 1.447-2.34 1.833c-.582.375-.977.5-1.357.5s-.774-.125-1.357-.5c-.601-.386-1.314-.978-2.34-1.834L5.928 6.765a.825.825 0 0 0-1.056 1.268l2.416 2.014c.975.812 1.765 1.47 2.463 1.92c.726.466 1.434.762 2.25.762c.814 0 1.522-.296 2.249-.763c.697-.448 1.487-1.107 2.462-1.92z"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Email</span>
-        <span class="link-meta">kodaproduction.contact@gmail.com</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="link-card anim anim-9" href="https://www.google.com/maps/search/?api=1&query=Koda+Production+Niort" target="_blank" rel="noopener">
-      <span class="link-icon link-icon--neutral" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-4.418 0-8 4.003-8 8.5c0 4.462 2.553 9.312 6.537 11.174a3.45 3.45 0 0 0 2.926 0C17.447 19.812 20 14.962 20 10.5C20 6.003 16.418 2 12 2" opacity=".5"/><path d="M12 12.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5"/></svg>
-      </span>
-      <span class="link-body">
-        <span class="link-title">Avis Google</span>
-        <span class="link-meta">★★★★★ · 9 avis vérifiés</span>
-      </span>
-      <span class="link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
+  <nav class="legende">
+    <a href="https://kodaprod.com" data-porte="0"><b><i style="background:var(--bleu)"></i>Portfolio</b><span>kodaprod.com</span></a>
+    <a href="https://kodaprod.live" data-porte="1"><b><i style="background:var(--rose)"></i>Mariage</b><span>kodaprod.live</span></a>
+    <a href="https://kodaprod.online" data-porte="2"><b><i style="background:var(--menthe)"></i>Entreprises</b><span>kodaprod.online</span></a>
   </nav>
 
-  <p class="foot anim anim-9">
-    Koda Production · Erwan Chapuis<br>
-    SIRET 842 080 400 00067 · Niort
-  </p>
-
+  <div class="pratique">
+    <a class="pastille" href="/video/"><span class="ic">▶</span>Vidéo &amp; drone</a>
+    <a class="pastille" href="/tarifs/"><span class="ic">€</span>Tarifs immobilier</a>
+    <a class="pastille" href="tel:+33625889088"><span class="ic">☎</span>06 25 88 90 88</a>
+    <a class="pastille" href="mailto:kodaproduction.contact@gmail.com"><span class="ic">✉</span>Écrire</a>
+    <a class="pastille" href="https://www.google.com/maps/search/?api=1&query=Koda+Production+Niort" target="_blank" rel="noopener"><span class="ic">★</span>5,0 · 9 avis</a>
+  </div>
+  <p class="pied">Koda Production · Erwan Chapuis<br>SIRET 842 080 400 00067 · Niort</p>
 </main>
 
+<script src="/accueil.js"></script>
 <script>
-  // Theme toggle — persist in localStorage, light by default
-  (function() {
-    const root = document.documentElement;
-    const btn = document.getElementById('theme-toggle');
-    const stored = localStorage.getItem('koda-theme');
-    if (stored === 'dark' || stored === 'light') {
-      root.setAttribute('data-theme', stored);
-    }
-    btn.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('koda-theme', next);
-    });
-  })();
-</script>
+  /* Géométrie isométrique : sol en losange, deux murs sur les arêtes du fond. */
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('svg');
+  const el = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.append(e); return e; };
+  const pts = (a) => a.map((p) => p.join(',')).join(' ');
+  const G = { x: 30, y: 250 }, H = { x: 180, y: 175 }, D = { x: 330, y: 250 }, B = { x: 180, y: 325 }, MUR = 130;
+  const surG = (t) => [G.x + (H.x - G.x) * t, G.y + (H.y - G.y) * t];   // arête gauche
+  const surD = (t) => [H.x + (D.x - H.x) * t, H.y + (D.y - H.y) * t];   // arête droite
+  const haut = ([x, y], h = MUR) => [x, y - h];
 
+  // murs
+  el('polygon', { points: pts([[G.x, G.y], [H.x, H.y], haut([H.x, H.y]), haut([G.x, G.y])]), fill: '#2b3a5c' });
+  el('polygon', { points: pts([[H.x, H.y], [D.x, D.y], haut([D.x, D.y]), haut([H.x, H.y])]), fill: '#22304d' });
+  el('polyline', { points: pts([haut([G.x, G.y]), haut([H.x, H.y]), haut([D.x, D.y])]), fill: 'none', stroke: '#0a0f1c', 'stroke-width': 3 });
+  // plinthe
+  el('polygon', { points: pts([[G.x, G.y], [H.x, H.y], haut([H.x, H.y], 8), haut([G.x, G.y], 8)]), fill: '#1b2640' });
+  el('polygon', { points: pts([[H.x, H.y], [D.x, D.y], haut([D.x, D.y], 8), haut([H.x, H.y], 8)]), fill: '#162036' });
+  // sol en damier
+  el('polygon', { points: pts([[G.x, G.y], [H.x, H.y], [D.x, D.y], [B.x, B.y]]), fill: '#d8c9a3', stroke: '#8f8160', 'stroke-width': 2 });
+  const N = 6;
+  for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+    if ((i + j) % 2) continue;
+    const c = (u, v) => [H.x + (D.x - H.x) * u / N + (G.x - H.x) * v / N, H.y + (D.y - H.y) * u / N + (G.y - H.y) * v / N];
+    el('polygon', { points: pts([c(i, j), c(i + 1, j), c(i + 1, j + 1), c(i, j + 1)]), fill: '#cdbd95' });
+  }
+
+  /* les portes : [arête, t0, t1, couleur, lumière, domaine] */
+  const PORTES = [
+    { arete: surG, t0: .40, t1: .60, c: '#3b82f6', c2: '#1d4fb8', lum: '#cfe0ff', dom: '.com', url: 'https://kodaprod.com', dit: 'Faites comme chez vous.', dir: 6 },
+    { arete: surD, t0: .16, t1: .36, c: '#e27da0', c2: '#a8466b', lum: '#ffe3ee', dom: '.live', url: 'https://kodaprod.live', dit: 'Félicitations, au fait !', dir: 0 },
+    { arete: surD, t0: .60, t1: .80, c: '#3fbf95', c2: '#1f7d5f', lum: '#dcfff2', dom: '.online', url: 'https://kodaprod.online', dit: 'On parle de votre marque ?', dir: 0 },
+  ];
+  const HP = 84;
+  PORTES.forEach((p, k) => {
+    const a = p.arete(p.t0), b = p.arete(p.t1);
+    const g = el('g', { class: 'porte-svg', 'data-k': k });
+    // chambranle
+    el('polygon', { points: pts([[a[0] - 3, a[1] + 1.5], [b[0] + 3, b[1] + (b[1] > a[1] ? 1.5 : -1.5)], haut(b, HP + 6), haut(a, HP + 6)]), fill: '#111', }, g);
+    // la lumière derrière
+    el('polygon', { points: pts([a, b, haut(b, HP), haut(a, HP)]), fill: p.lum }, g);
+    // le battant (se replie à l'ouverture)
+    p.panneau = el('polygon', { class: 'panneau', points: pts([a, b, haut(b, HP), haut(a, HP)]), fill: p.c, stroke: '#000', 'stroke-width': 1.5 }, g);
+    p.a = a; p.b = b;
+    // la plaque, couchée sur le mur
+    const m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - HP - 14];
+    const pente = (b[1] - a[1]) / (b[0] - a[0]);
+    const plaque = el('g', { transform: `matrix(1 ${pente} 0 1 ${m[0]} ${m[1]})` }, g);
+    el('rect', { x: -22, y: -9, width: 44, height: 14, fill: '#16161c', stroke: '#000', 'stroke-width': 1.5 }, plaque);
+    el('text', { x: 0, y: 2, 'text-anchor': 'middle', 'font-family': 'JetBrains Mono', 'font-size': 9, fill: '#fff' }, plaque).textContent = p.dom;
+    g.addEventListener('click', () => aller(k));
+  });
+
+  /* Koda : au centre du sol, il marche jusqu'à la porte choisie */
+  const scene = document.getElementById('scene'), koda = document.getElementById('koda'), img = document.getElementById('kodaImg');
+  let pos = [185, 262];
+  const placer = ([x, y]) => { koda.style.left = (x / 360 * 100) + '%'; koda.style.top = (y / 340 * 100) + '%'; };
+  placer(pos);
+  let occupe = false;
+  const aller = (k) => {
+    if (occupe) return; occupe = true;
+    const p = PORTES[k];
+    const mil = [(p.a[0] + p.b[0]) / 2, (p.a[1] + p.b[1]) / 2];
+    // un pas devant la porte, dans la pièce
+    const cible = [mil[0] + (p.arete === surG ? 22 : -22), mil[1] + 16];
+    const depart = pos.slice(), t0 = performance.now(), duree = 900;
+    Koda.taper(document.getElementById('bulle'), p.dit, 26);
+    const pas = (t) => {
+      const u = Math.min(1, (t - t0) / duree);
+      pos = [depart[0] + (cible[0] - depart[0]) * u, depart[1] + (cible[1] - depart[1]) * u];
+      placer(pos);
+      img.src = `/img/koda/hb_or_marche_${p.dir}_${Math.floor((t - t0) / 110) % 4}.png`;
+      if (u < 1) return requestAnimationFrame(pas);
+      img.src = `/img/koda/hb_or_debout_${p.dir}_0.png`;
+      ouvrir(p);
+    };
+    requestAnimationFrame(pas);
+  };
+  const ouvrir = (p) => {
+    const t0 = performance.now();
+    const anim = (t) => {
+      const u = Math.min(1, (t - t0) / 500), l = 1 - .82 * u;   // le battant se replie sur son gond
+      const b2 = [p.a[0] + (p.b[0] - p.a[0]) * l, p.a[1] + (p.b[1] - p.a[1]) * l];
+      p.panneau.setAttribute('points', pts([p.a, b2, haut(b2, HP), haut(p.a, HP)]));
+      if (u < 1) return requestAnimationFrame(anim);
+      Koda.partir(p.url, `https://<b>kodaprod${p.dom}</b>`);
+      p.fermer = () => { p.panneau.setAttribute('points', pts([p.a, p.b, haut(p.b, HP), haut(p.a, HP)])); };
+    };
+    requestAnimationFrame(anim);
+  };
+  document.querySelectorAll('.legende a').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); aller(+a.dataset.porte); }));
+  Koda.taper(document.getElementById('bulle'), 'Touchez une porte, je vous y emmène.');
+  // Retour arrière depuis un des sites : la page revient du cache telle qu'on l'a quittée,
+  // porte ouverte et Koda devant. On remet la pièce en ordre.
+  addEventListener('pageshow', (e) => {
+    if (!e.persisted) return;
+    PORTES.forEach((p) => p.fermer?.());
+    pos = [185, 262]; placer(pos); img.src = '/img/koda/hb_or_debout_4_0.png'; occupe = false;
+    document.querySelector('.redirection')?.classList.remove('visible');
+    Koda.taper(document.getElementById('bulle'), 'Re-bonjour ! Une autre porte ?');
+  });
+</script>
 </body>
 </html>
