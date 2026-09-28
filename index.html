@@ -115,13 +115,59 @@
   .koda { position: absolute; width: 14%; transform: translate(-50%, -100%); z-index: 2; pointer-events: none; }
   .koda img { display: block; width: 100%; height: auto; }
   .scene .bulle { position: absolute; left: 58%; top: 66%; font-size: 12px; max-width: 170px; padding: 8px 11px; z-index: 3; }
+  /* une porte « éclairée » : survolée, ou désignée par son bouton */
+  .scene .porte-svg .panneau { transition: filter .25s; }
+  .scene .porte-svg.eclaire .panneau { filter: brightness(1.18) drop-shadow(0 0 6px var(--lueur)); }
+  .scene .porte-svg.eclaire .plaque-fond { stroke: var(--lueur); }
+
+  /* le titre : caché au téléphone (le logo suffit), montré sur ordinateur */
+  .titre { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .shift-domaines .fleche { display: none; }
+
+  /*
+    ORDINATEUR (27-09-2026, retour d'Erwan : « la version mobile est bien,
+    sur PC il faut la réadapter »). La colonne de téléphone restait perdue
+    au milieu d'un écran de 1440. Ici : deux colonnes, tout tient sans
+    défiler ; la pièce en grand à gauche, le texte et les boutons à droite.
+    Et ce que seule la souris permet : survoler un domaine éclaire sa porte
+    et tourne Koda vers elle ; survoler une porte marque son bouton.
+  */
+  @media (min-width: 1024px) {
+    .page { max-width: 1560px; min-height: 100dvh; padding: 40px 56px; gap: 0 72px;
+            display: grid; align-content: center; align-items: start;
+            grid-template-columns: minmax(0, 1.35fr) minmax(360px, 1fr);
+            grid-template-areas: "scene tete" "scene titre" "scene domaines" "scene place" "scene pied"; }
+    .scene { grid-area: scene; align-self: center; width: min(100%, calc((100dvh - 80px) * 360 / 340)); justify-self: center; }
+    .scene .bulle { font-size: 14px; max-width: 220px; padding: 10px 14px; }
+    .tete { grid-area: tete; margin-bottom: 36px; }
+    .tete img { height: 64px; }
+    .titre { grid-area: titre; position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin-bottom: 32px; }
+    .titre .nom { display: block; font-size: 44px; font-weight: 600; letter-spacing: -.025em; line-height: 1.05; }
+    .titre .suite { display: block; margin-top: 10px; font-size: 16px; font-weight: 400; color: var(--texte-doux); }
+    .titre .liaison { display: none; }   /* le « · » de liaison, utile à la lecture d'une ligne, pas à deux */
+    .shift-domaines { grid-area: domaines; flex-direction: column; flex-wrap: nowrap; gap: 12px; margin-bottom: 36px; }
+    .shift-domaines a > span { flex-direction: row; justify-content: space-between; align-items: center; gap: 16px;
+                               min-height: 64px; padding: 0 20px; font-size: 16px; transform-origin: top right; }
+    /* bouton large : la bascule des petits onglets découvrait le fond crème ; ici le bord prend la couleur de la porte */
+    .shift-domaines a, .shift-domaines a:hover, .shift-domaines a.survol { background: transparent; border-bottom-color: transparent; }
+    .shift-domaines a:hover > span, .shift-domaines a.survol > span { transform: none; border-color: var(--c); background: #1d1d24; }
+    .shift-domaines a:hover > span small, .shift-domaines a.survol > span small { color: var(--c); opacity: 1; }
+    .shift-domaines a > span small { font-size: 12px; margin-left: auto; }
+    .shift-domaines .fleche { display: inline; font-size: 16px; opacity: .6; transition: transform .2s, opacity .2s; }
+    .shift-domaines a:hover .fleche, .shift-domaines a.survol .fleche { transform: translateX(4px); opacity: 1; color: var(--c); }
+    .page > section { grid-area: place; margin-bottom: 28px; }
+    .page > section .titre-bloc { text-align: left; }
+    .shift-place { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+    .shift-place a > span { padding: 0 8px; font-size: 13px; gap: 6px; }
+    .pied { grid-area: pied; text-align: left; }
+  }
 
 </style>
 </head>
 <body>
 <div class="etoiles"></div>
 <main class="page">
-  <h1 class="visuellement-cache">Koda Production · Erwan Chapuis, photographe et vidéaste à Niort</h1>
+  <h1 class="titre"><span class="nom">Koda Production</span><span class="suite"><span class="liaison"> · </span>Erwan Chapuis, photographe et vidéaste à Niort</span></h1>
   <header class="tete">
     <img src="/img/koda/koda-logo.png" width="480" height="326" alt="Koda Production">
     <p class="surtitre">Photographe &amp; vidéaste<br>Niort</p>
@@ -134,9 +180,9 @@
   </div>
 
   <nav class="shift shift-domaines" aria-label="Les trois sites">
-    <a href="https://kodaprod.com" data-porte="0" style="--c:#3b82f6"><span>Portfolio<small>kodaprod.com</small></span></a>
-    <a href="https://kodaprod.live" data-porte="1" style="--c:#e27da0"><span>Mariage<small>kodaprod.live</small></span></a>
-    <a href="https://kodaprod.online" data-porte="2" style="--c:#3fbf95"><span>Entreprises<small>kodaprod.online</small></span></a>
+    <a href="https://kodaprod.com" data-porte="0" style="--c:#3b82f6"><span>Portfolio<small>kodaprod.com</small><i class="fleche" aria-hidden="true">→</i></span></a>
+    <a href="https://kodaprod.live" data-porte="1" style="--c:#e27da0"><span>Mariage<small>kodaprod.live</small><i class="fleche" aria-hidden="true">→</i></span></a>
+    <a href="https://kodaprod.online" data-porte="2" style="--c:#3fbf95"><span>Entreprises<small>kodaprod.online</small><i class="fleche" aria-hidden="true">→</i></span></a>
   </nav>
 
   <section>
@@ -189,7 +235,8 @@
   const HP = 84;
   PORTES.forEach((p, k) => {
     const a = p.arete(p.t0), b = p.arete(p.t1);
-    const g = el('g', { class: 'porte-svg', 'data-k': k });
+    const g = el('g', { class: 'porte-svg', 'data-k': k, style: `--lueur:${p.c}` });
+    p.g = g;
     // chambranle
     el('polygon', { points: pts([[a[0] - 3, a[1] + 1.5], [b[0] + 3, b[1] + (b[1] > a[1] ? 1.5 : -1.5)], haut(b, HP + 6), haut(a, HP + 6)]), fill: '#111', }, g);
     // la lumière derrière
@@ -201,7 +248,7 @@
     const m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - HP - 14];
     const pente = (b[1] - a[1]) / (b[0] - a[0]);
     const plaque = el('g', { transform: `matrix(1 ${pente} 0 1 ${m[0]} ${m[1]})` }, g);
-    el('rect', { x: -22, y: -9, width: 44, height: 14, fill: '#16161c', stroke: '#000', 'stroke-width': 1.5 }, plaque);
+    el('rect', { class: 'plaque-fond', x: -22, y: -9, width: 44, height: 14, fill: '#16161c', stroke: '#000', 'stroke-width': 1.5 }, plaque);
     el('text', { x: 0, y: 2, 'text-anchor': 'middle', 'font-family': 'JetBrains Mono', 'font-size': 9, fill: '#fff' }, plaque).textContent = p.dom;
     g.addEventListener('click', () => aller(k));
   });
@@ -251,6 +298,16 @@
     domaines.forEach((x) => x.classList.toggle('choisi', x === a));
     setTimeout(() => aller(+a.dataset.porte), 180);
   }));
+  // À la souris : le bouton éclaire sa porte et tourne Koda vers elle ; la porte marque son bouton.
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const designer = (k) => {
+      PORTES.forEach((p, i) => p.g.classList.toggle('eclaire', i === k));
+      domaines.forEach((a, i) => a.classList.toggle('survol', i === k));
+      if (!occupe) img.src = k === null ? '/img/koda/hb_or_debout_4_0.png' : `/img/koda/hb_or_debout_${PORTES[k].dir}_0.png`;
+    };
+    domaines.forEach((a, k) => { a.addEventListener('mouseenter', () => designer(k)); a.addEventListener('mouseleave', () => designer(null)); });
+    PORTES.forEach((p, k) => { p.g.addEventListener('mouseenter', () => designer(k)); p.g.addEventListener('mouseleave', () => designer(null)); });
+  }
   document.querySelectorAll('.shift-place a').forEach((a) => a.addEventListener('click', (e) => {
     a.classList.add('choisi');
     setTimeout(() => a.classList.remove('choisi'), 1400);
