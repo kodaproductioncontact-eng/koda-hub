@@ -301,14 +301,15 @@
   // À la souris : le bouton éclaire sa porte et tourne Koda vers elle ; la porte marque son bouton.
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     /*
-      Koda REGARDE la porte, il ne lui tourne pas le dos : profil gauche (5)
-      pour .com, profil droit (1) pour .live et .online. Il pivote cran par
-      cran (8 orientations Habbo, 80 ms le cran) par le chemin le plus court,
-      en passant par la face, et revient à sa pose de repos (4). Retour
-      d'Erwan du 28-09 : la bascule d'un coup sur une vue de dos ne marchait pas.
+      Koda se tourne VERS la porte survolée (de dos, comme quand il y
+      marche : 6 pour .com, 0 pour .live et .online), cran par cran (8
+      orientations Habbo, 80 ms le cran) par le chemin le plus court.
+      Il ne revient à sa pose de repos (4) qu'après 1,2 s sans survol :
+      passer d'un bouton à l'autre le fait tourner directement vers la
+      nouvelle porte, sans repasser par la face. Retours d'Erwan du 28-09.
     */
-    const REGARD = [5, 1, 1], REPOS_DIR = 4;
-    let pivot = 0;
+    const REGARD = PORTES.map((p) => p.dir), REPOS_DIR = 4, ATTENTE_REPOS = 1200;
+    let pivot = 0, retour = 0;
     // l'orientation se lit sur l'image : après une marche ou un retour arrière, elle reste juste
     const dirAffichee = () => { const m = img.src.match(/debout_(\d)_0/); return m ? +m[1] : REPOS_DIR; };
     const tourner = (cible) => {
@@ -325,7 +326,9 @@
     const designer = (k) => {
       PORTES.forEach((p, i) => p.g.classList.toggle('eclaire', i === k));
       domaines.forEach((a, i) => a.classList.toggle('survol', i === k));
-      tourner(k === null ? REPOS_DIR : REGARD[k]);
+      clearTimeout(retour);
+      if (k === null) retour = setTimeout(() => tourner(REPOS_DIR), ATTENTE_REPOS);
+      else tourner(REGARD[k]);
     };
     domaines.forEach((a, k) => { a.addEventListener('mouseenter', () => designer(k)); a.addEventListener('mouseleave', () => designer(null)); });
     PORTES.forEach((p, k) => { p.g.addEventListener('mouseenter', () => designer(k)); p.g.addEventListener('mouseleave', () => designer(null)); });
