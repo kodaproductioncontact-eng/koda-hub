@@ -253,6 +253,18 @@
     g.addEventListener('click', () => aller(k));
   });
 
+  /*
+    Toutes les images de Koda chargées d'avance : une orientation affichée
+    pour la première fois n'était pas encore arrivée, et Koda disparaissait
+    le temps de la télécharger (« il spawn et despawn », Erwan, 28-09).
+    Gardées en mémoire, elles s'affichent instantanément.
+  */
+  const SPRITES = [
+    ...[0, 1, 2, 3, 4, 5, 6, 7].map((d) => `/img/koda/hb_or_debout_${d}_0.png`),
+    ...[0, 6].flatMap((d) => [0, 1, 2, 3].map((f) => `/img/koda/hb_or_marche_${d}_${f}.png`)),
+  ];
+  const enMemoire = SPRITES.map((src) => { const i = new Image(); i.src = src; i.decode?.().catch(() => {}); return i; });
+
   /* Koda : au centre du sol, il marche jusqu'à la porte choisie */
   const scene = document.getElementById('scene'), koda = document.getElementById('koda'), img = document.getElementById('kodaImg');
   let pos = [185, 262];
