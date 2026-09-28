@@ -300,10 +300,32 @@
   }));
   // À la souris : le bouton éclaire sa porte et tourne Koda vers elle ; la porte marque son bouton.
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    /*
+      Koda REGARDE la porte, il ne lui tourne pas le dos : profil gauche (5)
+      pour .com, profil droit (1) pour .live et .online. Il pivote cran par
+      cran (8 orientations Habbo, 80 ms le cran) par le chemin le plus court,
+      en passant par la face, et revient à sa pose de repos (4). Retour
+      d'Erwan du 28-09 : la bascule d'un coup sur une vue de dos ne marchait pas.
+    */
+    const REGARD = [5, 1, 1], REPOS_DIR = 4;
+    let pivot = 0;
+    // l'orientation se lit sur l'image : après une marche ou un retour arrière, elle reste juste
+    const dirAffichee = () => { const m = img.src.match(/debout_(\d)_0/); return m ? +m[1] : REPOS_DIR; };
+    const tourner = (cible) => {
+      clearTimeout(pivot);
+      const cran = () => {
+        const d = dirAffichee();
+        if (occupe || d === cible) return;
+        const suivante = (d + ((cible - d + 8) % 8 <= 4 ? 1 : 7)) % 8;
+        img.src = `/img/koda/hb_or_debout_${suivante}_0.png`;
+        pivot = setTimeout(cran, 80);
+      };
+      cran();
+    };
     const designer = (k) => {
       PORTES.forEach((p, i) => p.g.classList.toggle('eclaire', i === k));
       domaines.forEach((a, i) => a.classList.toggle('survol', i === k));
-      if (!occupe) img.src = k === null ? '/img/koda/hb_or_debout_4_0.png' : `/img/koda/hb_or_debout_${PORTES[k].dir}_0.png`;
+      tourner(k === null ? REPOS_DIR : REGARD[k]);
     };
     domaines.forEach((a, k) => { a.addEventListener('mouseenter', () => designer(k)); a.addEventListener('mouseleave', () => designer(null)); });
     PORTES.forEach((p, k) => { p.g.addEventListener('mouseenter', () => designer(k)); p.g.addEventListener('mouseleave', () => designer(null)); });
